@@ -48,7 +48,10 @@ abline(v = -80, h = -34)
 <img src="man/figures/README-example-1.png" width="100%" />
 
 Without basf, we would have to do extra format-aware workarounds when
-setting up the plot.
+setting up the plot. I find this incredibly disruptive, perhaps because
+I’ve used R and sp for so long - I use plotting every day to verify my
+work. It makes no sense to me to make things format-specific so I’m kind
+of mystified as to why it’s gone this way.
 
 ``` r
 library(sf)

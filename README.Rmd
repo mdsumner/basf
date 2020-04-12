@@ -30,7 +30,6 @@ devtools::install_github("mdsumner/basf")
 
 The idea is to use `library(basf)` instead of `library(sf)` and get on with the job. 
 
-
 ## Example
 
 There will be a warning when basf starts up because this is what it does. 
@@ -57,8 +56,11 @@ axis(1); axis(2)
 abline(v = -80, h = -34)
 ```
 
-Without basf, we would have to do extra format-aware workarounds when setting
-up the plot. 
+Without basf, we would have to do extra format-aware workarounds when setting up
+the plot. I find this incredibly disruptive, perhaps because I've used R and sp
+for so long - I use plotting every day to verify my work. It makes no sense to
+me to make things format-specific so I'm kind of mystified as to why it's gone
+this way.
 
 ```R
 library(sf)
