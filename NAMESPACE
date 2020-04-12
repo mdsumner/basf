@@ -3,4 +3,3 @@
 S3method(plot,sf)
 importFrom(graphics,plot)
 importFrom(sf,st_geometry)
-importFrom(tibble,tibble)

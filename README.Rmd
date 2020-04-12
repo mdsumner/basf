@@ -1,5 +1,7 @@
 ---
 output: github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -12,34 +14,63 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
+
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/mdsumner/basf?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/basf)
+  
 # basf
 
-The goal of basf is to plot simple features in a base graphics way. 
-
-This is for developers writing packages frustrated with the way sf plots
-and the ongoing disruptions. It's not for general use. 
+The goal of basf is to plot simple features in a base graphics way that sp did. 
 
 ## Installation
 
 ```{r install, eval=FALSE}
 devtools::install_github("mdsumner/basf")
 ```
+
+The idea is to use `library(basf)` instead of `library(sf)` and get on with the job. 
+
+
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows the only impact of basf. There will
+be a warning when it starts up because this is what it does. 
 
-```{r example}
-library(basf)
-## all the stuff is available
-nc <- read_sf(system.file("shape/nc.shp", package="sf"))
-
-## all we've changed is the plot command
-plot(nc)
-plot(nc[sample(1:nrow(nc), 10), ], col = rainbow(10), add = TRUE)
+```R
+Registered S3 method overwritten by 'basf':
+  method  from
+  plot.sf sf  
 ```
 
 
+```{r example}
+library(basf)
 
-Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+## all the stuff is available
+x <- read_sf(system.file("shape/nc.shp", package="sf"))
+
+## all we've changed is the plot command
+plot(x)
+plot(x[sample(1:nrow(x), 10), ], col = rainbow(10), add = TRUE)
+## overplotting works
+axis(1); axis(2)
+abline(v = -80, h = -34)
+```
+
+Without basf, we would have to do extra format-aware workarounds when setting
+up the plot. 
+
+```R
+library(sf)
+x <- read_sf(system.file("shape/nc.shp", package="sf"))
+
+plot(x[1], reset = FALSE, col = NA, main = "")
+plot(x[sample(1:nrow(x), 10), ], col = rainbow(10), add = TRUE)
+axis(1); axis(2)
+abline(v = -80, h = -34)
+```
+
+---
+
+Please note that this project is released with a [Contributor Code of Conduct](https://github.com/mdsumner/basf/blob/master/CODE_OF_CONDUCT.md).
   By participating in this project you agree to abide by its terms.
 

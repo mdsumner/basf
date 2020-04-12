@@ -1,19 +1,22 @@
 Package: basf
-Version: 0.0.0.9000
+Version: 0.1.0
 Title: Plot Simple Features with 'base' Sensibilities
 Description: Resurrects the standard plot for shapes established by the
  'base' and 'graphics' packages. This is suited to workflows that require
- constant efficient plotting using the established and traditional idioms so 
- that results can be checked without constantly working around specialty 
- formats. This package depends on 'sf' and only replaces the disruptive 'plot.sf' 
- method, so in theory it can be used in place (with a two-character code change). 
+ plotting using the established and traditional idioms of plotting spatially
+ coincident data where it belongs. This package depends on 'sf' and only replaces 
+ the plot method. 
 Authors@R: person("Michael", "Sumner", email = "mdsumner@gmail.com", role = c("aut", "cre"))
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
-RoxygenNote: 6.0.1
-Depends: sf, 
-    tibble
-Imports: 
-    graphics
+RoxygenNote: 7.1.0
+Depends: sf
+URL: https://github.com/mdsumner/basf
+BugReports: https://github.com/mdsumner/basf/issues
+Suggests: 
+    spelling,
+    testthat (>= 2.1.0), 
+    vdiffr
+Language: en-US
