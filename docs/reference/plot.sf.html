@@ -36,7 +36,7 @@
 
 
 <meta property="og:title" content="Plot simple features simply — plot.sf" />
-<meta property="og:description" content="Overrides 'sf::plot.sf' and wraps the call to 'plot(st_geometry(x))'. When
+<meta property="og:description" content="Overrides `sf::plot.sf` and wraps the call to `plot(st_geometry(x))`. When
 working with spatial data it's often useful to create maps where we
 overlay spatially coincident data in a plot." />
 <meta name="twitter:card" content="summary" />
@@ -113,7 +113,7 @@ overlay spatially coincident data in a plot." />
     </div>
 
     <div class="ref-description">
-    <p>Overrides 'sf::plot.sf' and wraps the call to 'plot(st_geometry(x))'. When
+    <p>Overrides `sf::plot.sf` and wraps the call to `plot(st_geometry(x))`. When
 working with spatial data it's often useful to create maps where we
 overlay spatially coincident data in a plot.</p>
     </div>
@@ -139,17 +139,16 @@ overlay spatially coincident data in a plot.</p>
     <p>used for its side effects of creating a plot</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This can be used when developing code or checking things, so that plots
-aren't always faceted by all attributes, coloured by them, or leaving
-the plot unusable for subsequent additional drawing. The key feature is that
-we don't have to change our behaviour and good habits depending on the
-format in use.</p>
+    <p>This is used so that plots aren't always facetted by all attributes, coloured
+by them, or leaving the plot unusable for subsequent additional drawing. The
+key feature is that we don't have to change our behaviour and good habits
+depending on the format in use.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>nc</span> <span class='kw'>&lt;-</span> <span class='fu'>read_sf</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"shape/nc.shp"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"sf"</span>))
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>read_sf</span>(<span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"shape/nc.shp"</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"sf"</span>))
 <span class='co'>## all we've changed is the plot command</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>nc</span>)</div><div class='input'><span class='co'>## we can overplot without format-specific acrobatics</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>nc</span>[<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>:<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>nc</span>), <span class='fl'>10</span>), ], <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>rainbow</a></span>(<span class='fl'>10</span>), <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span>(<span class='kw'>v</span> <span class='kw'>=</span> <span class='fl'>34</span>); <span class='fu'><a href='https://rdrr.io/r/graphics/axis.html'>axis</a></span>(<span class='fl'>2</span>)</div><div class='img'><img src='plot.sf-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>)</div><div class='input'><span class='co'>## we can overplot without format-specific acrobatics</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>[<span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>:<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span>(<span class='no'>x</span>), <span class='fl'>10</span>), ], <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>rainbow</a></span>(<span class='fl'>10</span>), <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span>(<span class='kw'>v</span> <span class='kw'>=</span> <span class='fl'>34</span>); <span class='fu'><a href='https://rdrr.io/r/graphics/axis.html'>axis</a></span>(<span class='fl'>2</span>)</div><div class='img'><img src='plot.sf-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
