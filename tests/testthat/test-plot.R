@@ -10,3 +10,7 @@ test_that("multiplication works", {
 "disp_spat", disp_spat()
   )
 })
+
+test_that("tibble is tibble", {
+  expect_s3_class(dummy_internal(), "tbl_df")
+})

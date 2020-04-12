@@ -32,3 +32,9 @@ plot.sf <- function(x, ...) {
   plot(sf::st_geometry(x), ...)
 }
 
+# just for read_sf
+#' @importFrom tibble tibble
+dummy_internal <- function() {
+  tibble::tibble()
+}
+
