@@ -33,11 +33,6 @@ This is a basic example which shows the only impact of basf.
 
 ``` r
 library(basf)
-#> Loading required package: sf
-#> Linking to GEOS 3.6.1, GDAL 2.2.3, PROJ 4.9.3
-#> Registered S3 method overwritten by 'basf':
-#>   method  from
-#>   plot.sf sf
 
 ## all the stuff is available
 x <- read_sf(system.file("shape/nc.shp", package="sf"))
