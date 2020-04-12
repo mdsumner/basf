@@ -20,14 +20,16 @@ with the job.
 
 ## Example
 
-This is a basic example which shows the only impact of basf. There will
-be a warning when it starts up because this is what it does.
+There will be a warning when basf starts up because this is what it
+does.
 
 ``` r
 Registered S3 method overwritten by 'basf':
   method  from
   plot.sf sf  
 ```
+
+This is a basic example which shows the only impact of basf.
 
 ``` r
 library(basf)

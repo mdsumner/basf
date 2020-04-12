@@ -32,8 +32,7 @@ The idea is to use `library(basf)` instead of `library(sf)` and get on with the 
 
 ## Example
 
-This is a basic example which shows the only impact of basf. There will
-be a warning when it starts up because this is what it does. 
+There will be a warning when basf starts up because this is what it does. 
 
 ```R
 Registered S3 method overwritten by 'basf':
@@ -41,6 +40,7 @@ Registered S3 method overwritten by 'basf':
   plot.sf sf  
 ```
 
+This is a basic example which shows the only impact of basf.
 
 ```{r example}
 library(basf)
