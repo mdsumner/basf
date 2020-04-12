@@ -1,8 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/mdsumner/basf?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/basf)
+<!-- badges: start --> [![R build
+status](https://github.com/mdsumner/basf/workflows/R-CMD-check/badge.svg)](https://github.com/mdsumner/basf/actions)
+<!-- badges: end -->
 
 # basf
 
