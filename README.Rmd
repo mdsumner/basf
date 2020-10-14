@@ -16,23 +16,33 @@ knitr::opts_chunk$set(
 library(basf)
 ```
 
- <!-- badges: start -->
-  [![R build status](https://github.com/mdsumner/basf/workflows/R-CMD-check/badge.svg)](https://github.com/mdsumner/basf/actions)
-  <!-- badges: end -->
-  
+
 # basf
 
-The goal of basf is to plot simple features in a base graphics way that sp did. 
+The goal of basf is to smooth over some of the pecularities of the sf package, with a very short list of features. 
+
+- plot simple features in a base graphics way that sp did. 
+- read vector data with a straightforward extent filter
 
 ## Installation
 
-```{r install, eval=FALSE}
-devtools::install_github("mdsumner/basf")
+From CRAN in the usual way. 
+
+```{r cran, eval=FALSE}
+install.packages("basf")
 ```
 
-The idea is to use `library(basf)` instead of `library(sf)` and get on with the job. 
+From Github: 
 
-## Example
+```{r install, eval=FALSE}
+#install.packages("remotes")
+remotes::install_github("mdsumner/basf")
+```
+
+Use `library(basf)` instead of `library(sf)` if you want these features. 
+
+## Plotting 
+
 
 There will be a warning when basf starts up because this is what it does. 
 
@@ -42,7 +52,7 @@ Registered S3 method overwritten by 'basf':
   plot.sf sf  
 ```
 
-This is a basic example which shows the only impact of basf.
+This example shows the impact of basf on plotting.
 
 ```{r example}
 library(basf)
@@ -72,6 +82,22 @@ plot(x[1], reset = FALSE, col = NA, main = "")
 plot(x[sample(1:nrow(x), 10), ], col = rainbow(10), add = TRUE)
 axis(1); axis(2)
 abline(v = -80, h = -34)
+```
+
+## Reading
+
+This example shows the impact of basf on reading.  We would otherwise obtain 32 polygons from this file. 
+
+The second optional argument `ext` can be an extent, either a raw vector xmin,xmax,ymin,ymax as here or a spatial object. 
+
+```R
+library(basf)
+read_ext("../measoshapes/inst/extdata/measo_regions_ll.gpkg", c(100, 120, -80, -10))
+Simple feature collection with 8 features and 3 fields
+geometry type:  POLYGON
+dimension:      XY
+bbox:           xmin: 30 ymin: -80 xmax: 170 ymax: -30
+geographic CRS: WGS 84
 ```
 
 ---
