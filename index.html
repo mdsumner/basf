@@ -35,20 +35,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">basf</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9001</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
+  <a href="reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -70,57 +67,81 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-
-
 <div id="basf" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#basf" class="anchor"></a>basf</h1></div>
-<p>The goal of basf is to plot simple features in a base graphics way that sp did.</p>
+<p>The goal of basf is to smooth over some of the pecularities of the sf package, with a very short list of features.</p>
+<ul>
+<li>plot simple features in a base graphics way that sp did.</li>
+<li>read vector data with a straightforward extent filter</li>
+</ul>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"mdsumner/basf"</span>)</pre></div>
-<p>The idea is to use <code><a href="https://rdrr.io/pkg/basf/man">library(basf)</a></code> instead of <code><a href="https://rdrr.io/pkg/sf/man">library(sf)</a></code> and get on with the job.</p>
+<p>From CRAN in the usual way.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"basf"</span><span class="op">)</span></pre></div>
+<p>From Github:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co">#install.packages("remotes")</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"mdsumner/basf"</span><span class="op">)</span></pre></div>
+<p>Use <code><a href="https://github.com/mdsumner/basf">library(basf)</a></code> instead of <code><a href="https://r-spatial.github.io/sf/">library(sf)</a></code> if you want these features.</p>
 </div>
-<div id="example" class="section level2">
+<div id="plotting" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
+<a href="#plotting" class="anchor"></a>Plotting</h2>
 <p>There will be a warning when basf starts up because this is what it does.</p>
-<div class="sourceCode" id="cb2"><pre class="r">Registered S3 method overwritten by 'basf':
-  method  from
-  plot.sf sf  </pre></div>
-<p>This is a basic example which shows the only impact of basf.</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">basf</span>)
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>Registered S3 method overwritten by <span class="st">'basf'</span><span class="op">:</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="st">  </span>method  from</span>
+<span id="cb3-3"><a href="#cb3-3"></a>  plot.sf sf  </span></code></pre></div>
+<p>This example shows the impact of basf on plotting.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mdsumner/basf">basf</a></span><span class="op">)</span>
 
 <span class="co">## all the stuff is available</span>
-<span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu">read_sf</span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"shape/nc.shp"</span>, <span class="kw">package</span><span class="kw">=</span><span class="st">"sf"</span>))
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">read_sf</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"shape/nc.shp"</span>, package<span class="op">=</span><span class="st">"sf"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co">## all we've changed is the plot command</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">x</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="no">x</span>[<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fl">1</span>:<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">x</span>), <span class="fl">10</span>), ], <span class="kw">col</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">rainbow</a></span>(<span class="fl">10</span>), <span class="kw">add</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">10</span><span class="op">)</span>, <span class="op">]</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">rainbow</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">## overplotting works</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span>(<span class="fl">1</span>); <span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span>(<span class="fl">2</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span>(<span class="kw">v</span> <span class="kw">=</span> -<span class="fl">80</span>, <span class="kw">h</span> <span class="kw">=</span> -<span class="fl">34</span>)</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="op">-</span><span class="fl">80</span>, h <span class="op">=</span> <span class="op">-</span><span class="fl">34</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-example-1.png" width="100%"></p>
 <p>Without basf, we would have to do extra format-aware workarounds when setting up the plot. I find this incredibly disruptive, perhaps because I’ve used R and sp for so long - I use plotting every day to verify my work. It makes no sense to me to make things format-specific so I’m kind of mystified as to why it’s gone this way.</p>
-<div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">sf</span>)
-<span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/sf/man/st_read.html">read_sf</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"shape/nc.shp"</span>, <span class="kw">package</span><span class="kw">=</span><span class="st">"sf"</span>))
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"shape/nc.shp"</span>, package<span class="op">=</span><span class="st">"sf"</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(<span class="no">x</span>[<span class="fl">1</span>], <span class="kw">reset</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="fl">NA</span>, <span class="kw">main</span> <span class="kw">=</span> <span class="st">""</span>)
-<span class="fu"><a href="https://rdrr.io/pkg/sf/man/plot.html">plot</a></span>(<span class="no">x</span>[<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="fl">1</span>:<span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="no">x</span>), <span class="fl">10</span>), ], <span class="kw">col</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">rainbow</a></span>(<span class="fl">10</span>), <span class="kw">add</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span>(<span class="fl">1</span>); <span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span>(<span class="fl">2</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span>(<span class="kw">v</span> <span class="kw">=</span> -<span class="fl">80</span>, <span class="kw">h</span> <span class="kw">=</span> -<span class="fl">34</span>)</pre></div>
+<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, reset <span class="op">=</span> <span class="cn">FALSE</span>, col <span class="op">=</span> <span class="cn">NA</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span>
+<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">10</span><span class="op">)</span>, <span class="op">]</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">rainbow</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="op">-</span><span class="fl">80</span>, h <span class="op">=</span> <span class="op">-</span><span class="fl">34</span><span class="op">)</span></pre></div>
+</div>
+<div id="reading" class="section level2">
+<h2 class="hasAnchor">
+<a href="#reading" class="anchor"></a>Reading</h2>
+<p>This example shows the impact of basf on reading. We would otherwise obtain 32 polygons from this file.</p>
+<p>The second optional argument <code>ext</code> can be an extent, either a raw vector xmin,xmax,ymin,ymax as here or a spatial object.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">library</span>(basf)</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="kw">read_ext</span>(<span class="st">"../measoshapes/inst/extdata/measo_regions_ll.gpkg"</span>, <span class="kw">c</span>(<span class="dv">100</span>, <span class="dv">120</span>, <span class="dv">-80</span>, <span class="dv">-10</span>))</span>
+<span id="cb6-3"><a href="#cb6-3"></a>Simple feature collection with <span class="dv">8</span> features and <span class="dv">3</span> fields</span>
+<span id="cb6-4"><a href="#cb6-4"></a>geometry type<span class="op">:</span><span class="st">  </span>POLYGON</span>
+<span id="cb6-5"><a href="#cb6-5"></a>dimension<span class="op">:</span><span class="st">      </span>XY</span>
+<span id="cb6-6"><a href="#cb6-6"></a>bbox<span class="op">:</span><span class="st">           </span>xmin<span class="op">:</span><span class="st"> </span><span class="dv">30</span> ymin<span class="op">:</span><span class="st"> </span><span class="dv">-80</span> xmax<span class="op">:</span><span class="st"> </span><span class="dv">170</span> ymax<span class="op">:</span><span class="st"> </span><span class="dv">-30</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>geographic CRS<span class="op">:</span><span class="st"> </span>WGS <span class="dv">84</span></span></code></pre></div>
 <hr>
 <p>Please note that this project is released with a <a href="https://github.com/mdsumner/basf/blob/master/CODE_OF_CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
 </div>
 </div>
-
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=basf">https://​cloud.r-project.org/​package=basf</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/mdsumner/basf/">https://​github.com/​mdsumner/​basf/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/mdsumner/basf/issues">https://​github.com/​mdsumner/​basf/​issues</a>
@@ -146,13 +167,7 @@
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://github.com/mdsumner/basf/actions"><img src="https://github.com/mdsumner/basf/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-</ul>
-</div>
-</div>
+  </div>
 </div>
 
 
@@ -161,7 +176,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
