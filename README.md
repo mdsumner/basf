@@ -3,7 +3,7 @@
 
 # basf
 
-The goal of basf is to smooth over some of the pecularities of the sf
+The goal of basf is to smooth over some of the peculiarities of the sf
 package, with a very short list of features.
 
   - plot simple features in a base graphics way that sp did.

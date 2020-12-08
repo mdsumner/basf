@@ -1,5 +1,5 @@
 Package: basf
-Version: 0.1.0.9001
+Version: 0.2.0
 Title: Plot Simple Features with 'base' Sensibilities
 Description: Resurrects the standard plot for shapes established by the
  'base' and 'graphics' packages. This is suited to workflows that require

@@ -6,6 +6,7 @@ disp_spat <- function() {
 }
 
 test_that("multiplication works", {
+  testthat::skip_if_not_installed("vdiffr")
   vdiffr::expect_doppelganger(
 "disp_spat", disp_spat()
   )
