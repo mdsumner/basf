@@ -1,3 +1,9 @@
+# basf 0.2.0
+
+* Fixed missing use of conditional Suggests as required for CRAN. 
+
+Thank you
+
 ## Test environments
 
 * local ubuntu R 4.0.3
